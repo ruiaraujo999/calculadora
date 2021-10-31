@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+    <link rel="stylesheet" href="calculadoraStyle.css">
+</head>
+<body>
+
+    
+    <br>
+    <br>
+    <div id="calc" >
+    <header id="header">
+        <div id="ecra2"> -  </div>
+        <div id="ecra1"> -  </div>
+        <div id="ecra"> 0  </div>
+    </header>
+    
+    <p id="ind">o</p>
+    <div id="tudo">
+    <div> 
+        <span id="c1" onclick="ad1()"> 1 </span> 
+        <span id="c2" onclick="ad2()"> 2 </span>
+        <span id="c3" onclick="ad3()"> 3 </span>
+        <span id="c+" onclick="admais()"> + </span>  </div>
+
+    <div> 
+        <span onclick="ad4()"> 4 </span> 
+        <span onclick="ad5()"> 5 </span>
+        <span onclick="ad6()"> 6 </span> 
+        <span onclick="admenos()"> - </span> </div>    
+    <div> 
+        <span onclick="ad7()"> 7 </span> 
+        <span onclick="ad8()"> 8 </span>
+        <span onclick="ad9()"> 9 </span>
+        <span onclick="admulti()"> * </span>  </div>  
+
+     <div> 
+        <span onclick="ad0()"> 0 </span> 
+        <span onclick="pont()"> . </span>
+        <span onclick="addividir()" > / </span>
+        <span id="igual" onclick="igu()"> = </span>  </div>  
+        
+     <div>
+        <span id="cortar" onclick="corte()"> C </span> 
+        <span id="remove" onclick="rem()"> R </span> </div>  
+    </div>
+    <div >
+        <p id="on" onclick="ligar()">ON</p>
+        <p id="off" onclick="desligar()">OFF</p>
+    </div>
+</div>
+
+     
+    <script>
+        var tela= document.getElementById("header")
+        var show = document.getElementById("ecra")
+        var show1 = document.getElementById("ecra1")
+        var show2 = document.getElementById("ecra2")
+        var num=0;
+        var guardaValor=0;
+        var ope="nada";
+        var che="F"
+        var decima=false;
+        var cont=0;
+        var estado=false;
+        var luz= document.getElementById("ind");
+
+        function ad1() { if(estado==false){
+        if(decima==false){num=(num*10)+1; show.innerText=num;}
+        else{cont++; num=(num*(10**cont))+1;  num=num/(10**cont);  show.innerText=num; }}}
+
+        function ad2() { if(estado==false){
+         if(decima==false){num=(num*10)+2; show.innerText=num;}
+        else{cont++; num=(num*(10**cont))+2;  num=num/(10**cont);  show.innerText=num; }}}
+
+        function ad3() { if(estado==false){
+        if(decima==false){num=(num*10)+3; show.innerText=num;}
+        else{cont++; num=(num*(10**cont))+3;  num=num/(10**cont);  show.innerText=num; }}}
+
+        function ad4() { if(estado==false){
+         if(decima==false){num=(num*10)+4; show.innerText=num;}
+        else{cont++; num=(num*(10**cont))+4;  num=num/(10**cont);  show.innerText=num; }}}
+
+        function ad5() { if(estado==false){
+        if(decima==false){num=(num*10)+5; show.innerText=num;}
+        else{cont++; num=(num*(10**cont))+5;  num=num/(10**cont);  show.innerText=num; }}}
+
+        function ad6() { if(estado==false){
+        if(decima==false){num=(num*10)+6; show.innerText=num;}
+        else{cont++; num=(num*(10**cont))+6;  num=num/(10**cont);  show.innerText=num; }}}
+
+        function ad7() { if(estado==false){
+        if(decima==false){num=(num*10)+7; show.innerText=num;}
+        else{cont++; num=(num*(10**cont))+7;  num=num/(10**cont);  show.innerText=num; }}}
+
+        function ad8() { if(estado==false){
+        if(decima==false){num=(num*10)+8; show.innerText=num;}
+        else{cont++; num=(num*(10**cont))+8;  num=num/(10**cont);  show.innerText=num; }}}
+
+        function ad9() { if(estado==false){
+        if(decima==false){num=(num*10)+9; show.innerText=num;}
+        else{cont++; num=(num*(10**cont))+9;  num=num/(10**cont);  show.innerText=num; }}}
+
+        function ad0() { if(estado==false){
+        if(decima==false){num=(num*10)+0; show.innerText=num;}
+        else{cont++; num=(num*(10**cont))+0;  num=num/(10**cont);  show.innerText=num; }}}
+
+        function corte() { if(estado==false){
+        num=0; show.innerText=num; show1.innerText="-";show2.innerText="-"; decima=false;cont=0; guardaValor=0;  }}
+
+        function pont() { if(estado==false){ decima=true; show.innerText=num+"." }}
+        function rem() {if(estado==false){ num=(num/10)-((num/10)-num); show.innerText=num;}}
+
+        function desligar(){ show.innerText=""; show1.innerText=""; show2.innerText="";tela.style.background='rgb(38, 136, 139)'; estado=true; luz.style.background='rgb(21, 94, 18)'; luz.style.color='rgb(21, 94, 18)';}
+
+        function ligar(){estado=false;corte(); tela.style.backgroundImage='linear-gradient(rgb(154, 210, 212),rgb(203, 232, 233),rgb(167, 219, 221))';luz.style.background='rgb(13, 255, 13)'; luz.style.color='rgb(13, 255, 13)'; }
+
+        function admais() {if(estado==false){  if(guardaValor!=0){igu();guardaValor=num;num=0;show.innerText=num;  show1.innerText="+";show2.innerText=guardaValor;}
+        else{guardaValor=num;num=0; show.innerText=0;show1.innerText="+";show2.innerText=guardaValor}ope="somar"; decima=false; }}
+        
+        function admenos() { if(estado==false){if(guardaValor!=0){igu();guardaValor=num;num=0;show.innerText=num;  show1.innerText="-";show2.innerText=guardaValor;}
+        else{ guardaValor=num;num=0; show.innerText=0;show1.innerText="-";show2.innerText=guardaValor} ope="menos"; decima=false}}
+
+        function admulti() {if(estado==false){if(guardaValor!=0){igu();guardaValor=num;num=0;show.innerText=num;  show1.innerText="x";show2.innerText=guardaValor;}
+        else{ guardaValor=num;num=0; show.innerText=0;show1.innerText="x";show2.innerText=guardaValor} ope="multi";decima=false} }
+
+        function addividir() { if(estado==false){if(guardaValor!=0){igu();guardaValor=num;num=0;show.innerText=num;  show1.innerText="/";show2.innerText=guardaValor;}
+        else{guardaValor=num;num=0; show.innerText=0;show1.innerText="/";show2.innerText=guardaValor}ope="dividir";decima=false} }
+
+        function igu() {if(estado==false){
+                         if(ope=="somar"){num=num+guardaValor;guardaValor=0; show.innerText=num}; 
+                         if(ope=="menos"){num=guardaValor-num;guardaValor=0; show.innerText=num};
+                         if(ope=="multi"){num=num*guardaValor;guardaValor=0; show.innerText=num};
+                         if(ope=="dividir"){num=guardaValor/num;guardaValor=0; show.innerText=num};
+                         show1.innerText="-";show2.innerText="-"; decima=false; cont=0;}
+                    }
+                    
+
+    </script>
+
+</body>
+</html>
